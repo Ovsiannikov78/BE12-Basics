@@ -1,7 +1,6 @@
 package de.ovsiannikov.springmvc.repository;
 
 import de.ovsiannikov.springmvc.model.Contact;
-
 import java.util.List;
 
 public interface IContactRepo {

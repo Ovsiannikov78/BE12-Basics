@@ -1,6 +1,5 @@
 package de.ovsiannikov.springmvc.repository;
 
-import de.ovsiannikov.springmvc.exceptions.NotFoundException;
 import de.ovsiannikov.springmvc.model.Contact;
 import org.springframework.stereotype.Repository;
 import java.util.*;
@@ -11,10 +10,6 @@ public class InMemoryContactRepo implements IContactRepo {
     private int idCounter;
 
     List<Contact> source = new ArrayList<>();
-
-    public InMemoryContactRepo(NotFoundException notFoundException) {
-    }
-
 
     @Override
     public void save(Contact contact) {
