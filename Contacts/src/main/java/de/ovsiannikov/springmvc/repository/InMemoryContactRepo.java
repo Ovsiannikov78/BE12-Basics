@@ -3,13 +3,12 @@ package de.ovsiannikov.springmvc.repository;
 import de.ovsiannikov.springmvc.exceptions.NotFoundException;
 import de.ovsiannikov.springmvc.model.Contact;
 import org.springframework.stereotype.Repository;
-
 import java.util.*;
 
 // AND TESTS!!!
 @Repository
 public class InMemoryContactRepo implements IContactRepo {
-    private int idCounter = 1;
+    private int idCounter;
 
     List<Contact> source = new ArrayList<>();
 
@@ -19,10 +18,9 @@ public class InMemoryContactRepo implements IContactRepo {
 
     @Override
     public void save(Contact contact) {
-        if (source.isEmpty() || !source.contains(contact)) {
-            contact.setId(idCounter);
+        if (!source.contains(contact) && contact.getId() == 0) {
+            contact.setId(++idCounter);
             source.add(contact);
-            idCounter++;
         } else {
             updateContact(contact);
         }
@@ -48,7 +46,7 @@ public class InMemoryContactRepo implements IContactRepo {
         return new ArrayList<>(source);
     }
 
-    public void updateContact(Contact contact) {
+    private void updateContact(Contact contact) {
         for (Contact theContact : source) {
             if (theContact.getId() == contact.getId()) {
                 source.set(source.indexOf(theContact), contact);
