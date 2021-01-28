@@ -46,7 +46,7 @@
         <tbody>
         <tr th:each="contact : ${contactList}">
 
-            <td th:text="${contact.firstName}"/>
+            <td><a th:href="'contacts/' + ${contact.getId()}" th:text="${contact.firstName}"></a></td>
             <td th:text="${contact.lastName}"/>
             <td th:text="${contact.age}"/>
 

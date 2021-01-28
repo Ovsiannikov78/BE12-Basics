@@ -60,4 +60,14 @@ public class ContactController {
 
         return "redirect:/contacts";
     }
+
+    @GetMapping("/contacts/{id}")
+    public String getContact(@PathVariable int id, Model model) throws ClassNotFoundException {
+
+        Contact contact = contactService.get(id);
+
+        model.addAttribute("contact", contact);
+
+        return "/contact";
+    }
 }
